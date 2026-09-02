@@ -117,3 +117,15 @@ Decisiones tomadas durante la fase:
   cambia cursor, tabindex ni comportamiento de clic — solo refuerzo visual.
   Verificado por código (`boxShadow` toma el color correcto por banda) y
   captura de pantalla.
+- Ajuste posterior al cierre de Fase 2: en móvil (≤640px) la tarjeta
+  "Partes interesadas" se estiraba a todo el ancho de pantalla; corregido
+  a su ancho compacto de escritorio (150px) centrada en la columna
+  apilada. Verificado con viewport de 390px (`getBoundingClientRect`) y
+  captura de pantalla.
+- Ajuste posterior al cierre de Fase 2: en móvil el centrado "real" del
+  título de banda (position:absolute sobre el ancho total, ver Fase 1) se
+  solapaba con el contador+chevron cuando el título envolvía a 2 líneas
+  (ej. "Procesos de evaluación y mejora"). Corregido volviendo al flujo
+  flex normal (título a la izquierda) solo en la media query de ≤640px;
+  el centrado real de escritorio no cambió. Verificado sin solape en las
+  4 bandas (`getBoundingClientRect`, viewport 390px) y captura de pantalla.

@@ -440,7 +440,25 @@ body {
     row-gap: 14px;
   }
 
-  .stakeholder-card { width: 100%; }
+  /* Compacta (mismo ancho que en escritorio) y centrada en la columna
+     apilada, en vez de estirarse a todo el ancho de pantalla. */
+  .stakeholder-card {
+    width: 150px;
+    margin: 0 auto;
+  }
+
+  /* El centrado "real" del título de banda (position:absolute sobre el
+     ancho total, ver arriba) da por hecho que el header tiene sitio de
+     sobra; en móvil, con títulos largos que envuelven a 2 líneas, esa caja
+     centrada llega a solaparse con el contador+chevron. En la columna
+     apilada no hace falta ese centrado exacto, así que se vuelve al flujo
+     flex normal (título a la izquierda, sin superponerse a nada). */
+  .band.is-open .band-name {
+    position: static;
+    transform: none;
+    max-width: none;
+    text-align: left;
+  }
 }
 
 /* --- Respeto a movimiento reducido --- */
