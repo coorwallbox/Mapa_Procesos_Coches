@@ -12,19 +12,23 @@
     <header class="map-header">
       <p class="map-eyebrow">Sistema de Gestión de Calidad</p>
       <h1 class="map-title">Mapa de procesos los coches 2026</h1>
-      <p class="map-subtitle">Norma ISO 9001 — clic en una banda para desplegar sus procesos</p>
+      <p class="map-subtitle">Clic en una banda para desplegar sus procesos</p>
     </header>
 
     <!-- Layout de 3 columnas: tarjeta lateral / bandas / tarjeta lateral.
          Las tarjetas de "Partes interesadas" se posicionan en vivo desde script.js
          para quedar a la altura del centro de su banda ancla. -->
     <div class="map-layout" id="mapLayout">
-      <aside class="stakeholder-card" id="stakeholderLeft" aria-label="Solicitudes partes interesadas"></aside>
+      <!-- Conectores punteados + flechas entre tarjetas laterales y bandas;
+           los trazos los calcula script.js (drawConnectors) -->
+      <svg class="map-connectors" id="mapConnectors" aria-hidden="true"></svg>
+
+      <aside class="stakeholder-card" id="stakeholderLeft" aria-label="Solicitudes partes interesadas" data-tooltip="Entradas"></aside>
 
       <!-- Las bandas se inyectan desde script.js a partir del objeto de datos -->
       <section class="map-bands" id="mapBands" aria-label="Bandas de procesos"></section>
 
-      <aside class="stakeholder-card" id="stakeholderRight" aria-label="Satisfacción partes interesadas"></aside>
+      <aside class="stakeholder-card" id="stakeholderRight" aria-label="Satisfacción partes interesadas" data-tooltip="Salidas"></aside>
     </div>
   </main>
 

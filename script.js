@@ -238,10 +238,13 @@ function repositionStakeholders() {
   const bottomBand = document.querySelector(`.band[data-band-id="${STAKEHOLDER_BOTTOM_BAND_ID}"]`);
   if (!left || !right || !layout || !topBand || !bottomBand) return;
 
-  // Debajo de 640px el layout se apila en una columna; no aplica posicionamiento.
+  // Debajo de 640px el layout se apila en una columna; no aplica posicionamiento
+  // ni conectores (el SVG se oculta por CSS y además se vacía aquí).
   if (window.matchMedia("(max-width: 640px)").matches) {
     left.style.marginTop = "0";
     right.style.marginTop = "0";
+    const svg = document.getElementById("mapConnectors");
+    if (svg) svg.innerHTML = "";
     return;
   }
 
@@ -250,10 +253,64 @@ function repositionStakeholders() {
   const bottomBandRect = bottomBand.getBoundingClientRect();
   const seamY = (topBandRect.bottom + bottomBandRect.top) / 2;
 
+  // Se guarda la posición FINAL de cada tarjeta (no la leída del DOM, que
+  // durante la transición de margin-top aún no es la definitiva)
+  const cardTops = {};
   [left, right].forEach((card) => {
-    const desiredTop = seamY - layoutTop - card.offsetHeight / 2;
-    card.style.marginTop = `${Math.max(0, Math.round(desiredTop))}px`;
+    const desiredTop = Math.max(0, Math.round(seamY - layoutTop - card.offsetHeight / 2));
+    card.style.marginTop = `${desiredTop}px`;
+    cardTops[card.id] = desiredTop;
   });
+
+  drawConnectors(left, right, cardTops, seamY - layoutTop);
+}
+
+/* --- Dibuja los conectores punteados y las flechas ">" (coordenadas del layout) ---
+   Izquierda: de la tarjeta sube a la primera banda y baja a la última (en ángulo
+   recto), con una flecha en el hueco central apuntando a las bandas.
+   Derecha: el mismo trazo en espejo, con la flecha apuntando a la tarjeta. */
+function drawConnectors(left, right, cardTops, seamY) {
+  const svg = document.getElementById("mapConnectors");
+  const layout = document.getElementById("mapLayout");
+  const bandsBox = document.getElementById("mapBands");
+  const headers = bandsBox ? bandsBox.querySelectorAll(".band-header") : [];
+  if (!svg || !layout || headers.length === 0) return;
+
+  const layoutRect = layout.getBoundingClientRect();
+  const bandsRect = bandsBox.getBoundingClientRect();
+  const firstHeader = headers[0].getBoundingClientRect();
+  const lastHeader = headers[headers.length - 1].getBoundingClientRect();
+
+  // Altura de los tramos horizontales: centro de la cabecera de la primera/última banda
+  const topY = firstHeader.top + firstHeader.height / 2 - layoutRect.top;
+  const bottomY = lastHeader.top + lastHeader.height / 2 - layoutRect.top;
+  const bandsLeft = bandsRect.left - layoutRect.left;
+  const bandsRight = bandsRect.right - layoutRect.left;
+  const edgeGap = 4; // separación entre la línea y el borde de la banda
+
+  const leftX = left.offsetLeft + left.offsetWidth / 2;
+  const rightX = right.offsetLeft + right.offsetWidth / 2;
+  const leftTop = cardTops[left.id];
+  const leftBottom = leftTop + left.offsetHeight;
+  const rightTop = cardTops[right.id];
+  const rightBottom = rightTop + right.offsetHeight;
+
+  const dashed = [
+    `M${leftX},${leftTop} V${topY} H${bandsLeft - edgeGap}`,
+    `M${leftX},${leftBottom} V${bottomY} H${bandsLeft - edgeGap}`,
+    `M${bandsRight + edgeGap},${topY} H${rightX} V${rightTop}`,
+    `M${bandsRight + edgeGap},${bottomY} H${rightX} V${rightBottom}`
+  ];
+
+  // Flechas ">" centradas en el hueco entre tarjeta y bandas, a la altura de la costura
+  const arrow = (x) => `M${x - 3},${seamY - 6} L${x + 3},${seamY} L${x - 3},${seamY + 6}`;
+  const leftArrowX = (left.offsetLeft + left.offsetWidth + bandsLeft) / 2;
+  const rightArrowX = (bandsRight + right.offsetLeft) / 2;
+
+  svg.innerHTML =
+    dashed.map((d) => `<path class="connector-line" d="${d}"/>`).join("") +
+    `<path class="connector-arrow" d="${arrow(leftArrowX)}"/>` +
+    `<path class="connector-arrow" d="${arrow(rightArrowX)}"/>`;
 }
 
 /* --- Ficha de detalle de proceso (Fase 2): panel lateral deslizante ---
