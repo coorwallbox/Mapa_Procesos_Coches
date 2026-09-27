@@ -103,8 +103,17 @@ body {
   stroke-linejoin: round;
 }
 
+/* Los trazos "fluyen" en el sentido en que se dibuja cada path (script.js):
+   izquierda tarjeta → bandas (entrada), derecha bandas → tarjeta (salida).
+   El desplazamiento de la animación = un ciclo del patrón (10 + 8). */
 .connector-line {
   stroke-dasharray: 10 8;
+  animation: connector-flow 1s linear infinite;
+}
+
+@keyframes connector-flow {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -18; }
 }
 
 /* --- Contenedor de bandas --- */
@@ -561,4 +570,5 @@ body {
 /* --- Respeto a movimiento reducido --- */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
+  .connector-line { animation: none; }
 }
