@@ -6,8 +6,8 @@ Documentación del proyecto **Mapa de procesos (ISO 9001)**.
 |-----|-----------|--------|
 | [00_README](00_README.md) | Visión general, estructura, ejecución y publicación | Vigente |
 | [01_INDEX](01_INDEX.md) | Este índice | Vigente |
-| [06_IMPLEMENTATION](06_IMPLEMENTATION.md) | Detalle técnico: datos, layout, iconos, publicación | Vigente |
-| [07_PROGRESO_RESUMEN](07_PROGRESO_RESUMEN.md) | Estado por fases | Vigente |
+| [06_IMPLEMENTATION](06_IMPLEMENTATION.md) | Detalle técnico: datos, layout, iconos, publicación (NO es el checklist de fases) | Vigente |
+| [07_PROGRESO_RESUMEN](07_PROGRESO_RESUMEN.md) | Estado por fases + checklist de cierre por fase | Vigente |
 
 ## Reglas de carga
 

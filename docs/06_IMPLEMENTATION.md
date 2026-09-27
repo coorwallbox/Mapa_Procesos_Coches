@@ -1,6 +1,10 @@
 # 06 — Implementación
 
-Detalle técnico de la solución. Complementa 00_README.
+Detalle técnico de la solución. Complementa [[Proyectos/Formularios/Mapa_de_procesos/docs/00_README|00_README]].
+
+> Nota: en este proyecto el checklist de fases (con criterios de cierre) vive
+> en [[Proyectos/Formularios/Mapa_de_procesos/docs/07_PROGRESO_RESUMEN|07_PROGRESO_RESUMEN]],
+> no acá — este archivo se usa solo para detalle técnico (ver `01_INDEX`).
 
 ## Arquitectura
 
@@ -77,7 +81,7 @@ El tamaño de la tarjeta define el comportamiento del texto, no al revés:
 
 ## Publicación (SharePoint)
 
-Ver 00_README. Clave: servir por **GitHub Pages** (no `raw`), y que el admin
+Ver [[Proyectos/Formularios/Mapa_de_procesos/docs/00_README|00_README]]. Clave: servir por **GitHub Pages** (no `raw`), y que el admin
 del tenant permita `github.io` como dominio incrustable si aplica.
 
 ## Pendientes / decisiones abiertas

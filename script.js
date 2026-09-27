@@ -24,26 +24,6 @@ const PROCESS_MAP = [
     ]
   },
   {
-    id: "core",
-    name: "Procesos misionales",
-    colorVar: "--core",
-    processes: [
-      {
-        name: "Comercial",
-        icon: "comercial.png",
-        // Campos de ejemplo (Fase 2): solo Misionales/Apoyo tienen ficha de detalle.
-        description: "Gestiona la relación con el cliente desde la oferta hasta el cierre de la venta, asegurando el cumplimiento de los requisitos comerciales.",
-        responsible: "Jefe Comercial"
-      },
-      {
-        name: "Posventa",
-        icon: "posventa.png",
-        description: "Atiende garantías, reclamos y soporte posteriores a la venta, asegurando la satisfacción continua del cliente.",
-        responsible: "Coordinador de Posventa"
-      }
-    ]
-  },
-  {
     id: "support",
     name: "Procesos de apoyo",
     colorVar: "--support",
@@ -51,6 +31,7 @@ const PROCESS_MAP = [
       {
         name: "Administrativos",
         icon: "administrativos.png",
+        // Campos de ejemplo (Fase 2): solo Misionales/Apoyo tienen ficha de detalle.
         description: "Provee los recursos, infraestructura y servicios administrativos que soportan la operación de los demás procesos.",
         responsible: "Jefe Administrativo"
       },
@@ -59,6 +40,25 @@ const PROCESS_MAP = [
         icon: "financieros.png",
         description: "Planifica y controla los recursos financieros de la organización, incluyendo presupuesto, tesorería y cartera.",
         responsible: "Jefe Financiero"
+      }
+    ]
+  },
+  {
+    id: "core",
+    name: "Procesos misionales",
+    colorVar: "--core",
+    processes: [
+      {
+        name: "Comercial",
+        icon: "comercial.png",
+        description: "Gestiona la relación con el cliente desde la oferta hasta el cierre de la venta, asegurando el cumplimiento de los requisitos comerciales.",
+        responsible: "Jefe Comercial"
+      },
+      {
+        name: "Posventa",
+        icon: "posventa.png",
+        description: "Atiende garantías, reclamos y soporte posteriores a la venta, asegurando la satisfacción continua del cliente.",
+        responsible: "Coordinador de Posventa"
       }
     ]
   },
@@ -88,10 +88,10 @@ const STAKEHOLDERS = {
 };
 
 /* Las dos tarjetas comparten UNA sola altura: el punto medio del bloque
-   formado por ambas bandas juntas (Misionales + Apoyo), no el centro de cada
+   formado por ambas bandas juntas (Apoyo + Misionales), no el centro de cada
    banda por separado. */
-const STAKEHOLDER_TOP_BAND_ID = "core";     // Procesos misionales
-const STAKEHOLDER_BOTTOM_BAND_ID = "support"; // Procesos de apoyo
+const STAKEHOLDER_TOP_BAND_ID = "support";  // Procesos de apoyo
+const STAKEHOLDER_BOTTOM_BAND_ID = "core";  // Procesos misionales
 
 /* --- SVG del chevron (indicador de expand/colapso) --- */
 const CHEVRON_SVG =
@@ -173,9 +173,19 @@ function buildProcessCard(process) {
 
 /* --- Llena una tarjeta lateral de "Partes interesadas" (icono + título + lista) ---
    Recibe el <aside> ya presente en el HTML (conserva su id/aria-label) y el
-   título propio de ese lado (STAKEHOLDERS.titleLeft / .titleRight). */
+   título propio de ese lado (STAKEHOLDERS.titleLeft / .titleRight).
+   Icono + título forman un botón que despliega/colapsa la lista (cerrada por
+   defecto, cada tarjeta independiente, igual que las bandas). */
 function populateStakeholderCard(container, title) {
   if (!container) return;
+
+  const listId = `${container.id}-list`;
+
+  const toggle = document.createElement("button");
+  toggle.type = "button";
+  toggle.className = "stakeholder-toggle";
+  toggle.setAttribute("aria-expanded", "false");
+  toggle.setAttribute("aria-controls", listId);
 
   const iconWrap = document.createElement("div");
   iconWrap.className = "card-icon-wrap";
@@ -193,14 +203,25 @@ function populateStakeholderCard(container, title) {
 
   const list = document.createElement("ul");
   list.className = "stakeholder-list";
+  list.id = listId;
   STAKEHOLDERS.items.forEach((item) => {
     const li = document.createElement("li");
     li.textContent = item;
     list.appendChild(li);
   });
 
-  container.appendChild(iconWrap);
-  container.appendChild(titleEl);
+  toggle.appendChild(iconWrap);
+  toggle.appendChild(titleEl);
+  toggle.insertAdjacentHTML("beforeend", CHEVRON_SVG);
+
+  // Al abrir/cerrar cambia el alto de la tarjeta, así que se recentra
+  toggle.addEventListener("click", () => {
+    const isOpen = container.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    repositionStakeholders();
+  });
+
+  container.appendChild(toggle);
   container.appendChild(list);
 }
 

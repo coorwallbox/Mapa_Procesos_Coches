@@ -1,3 +1,10 @@
+---
+fase_actual: 2
+estado_resumen: "Fase 2 completa — siguiente fase por confirmar"
+tolerancias_excedidas: 0
+fases_reabiertas: 0
+---
+
 # 07 — Progreso (resumen)
 
 Estado por fases del proyecto **Mapa de procesos (ISO 9001)**.
