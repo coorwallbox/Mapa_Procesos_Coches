@@ -116,6 +116,22 @@ body {
   to   { stroke-dashoffset: -18; }
 }
 
+/* Parpadeo suave de las flechas ">" (se atenúan sin desaparecer del todo) */
+.connector-arrow {
+  animation: connector-blink 1.6s ease-in-out infinite;
+}
+
+/* La flecha de salida (derecha) va medio ciclo detrás de la de entrada
+   (izquierda): primero parpadea la izquierda y después la derecha. */
+.connector-arrow--out {
+  animation-delay: -0.8s;
+}
+
+@keyframes connector-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.25; }
+}
+
 /* --- Contenedor de bandas --- */
 .map-bands {
   display: flex;
@@ -570,5 +586,6 @@ body {
 /* --- Respeto a movimiento reducido --- */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
-  .connector-line { animation: none; }
+  .connector-line,
+  .connector-arrow { animation: none; }
 }

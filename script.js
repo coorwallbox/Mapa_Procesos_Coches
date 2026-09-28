@@ -310,7 +310,7 @@ function drawConnectors(left, right, cardTops, seamY) {
   svg.innerHTML =
     dashed.map((d) => `<path class="connector-line" d="${d}"/>`).join("") +
     `<path class="connector-arrow" d="${arrow(leftArrowX)}"/>` +
-    `<path class="connector-arrow" d="${arrow(rightArrowX)}"/>`;
+    `<path class="connector-arrow connector-arrow--out" d="${arrow(rightArrowX)}"/>`;
 }
 
 /* --- Ficha de detalle de proceso (Fase 2): panel lateral deslizante ---
