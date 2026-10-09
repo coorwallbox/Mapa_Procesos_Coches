@@ -114,6 +114,11 @@ Entregables (en `auditoria/`, no versionados):
 - Inventario de carpetas (solo nombres), cruce por código `PROCESO-TIPO-Nº`,
   catálogo de procesos (código, nombre, macroproceso, carpeta) y reporte de
   concordancia por categoría, con los scripts que los generan.
+- Informe de Word para la dirección (2026-10-08, pedido del usuario): estado
+  actual, hallazgos priorizados, alternativas de mejora y anexos, con la marca
+  del manual `Manual_Marca_Los_Coches` (paleta, Montserrat incrustada, logo).
+  Lo arma `auditoria/informe.py` desde los mismos datos del reporte; Word
+  actualiza la tabla de contenido y exporta el PDF. Revisado página por página.
 
 Criterio de validación:
 - [x] Catálogo con todos los procesos del PPT y del listado, y los que solo
