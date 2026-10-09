@@ -119,6 +119,10 @@ Entregables (en `auditoria/`, no versionados):
   del manual `Manual_Marca_Los_Coches` (paleta, Montserrat incrustada, logo).
   Lo arma `auditoria/informe.py` desde los mismos datos del reporte; Word
   actualiza la tabla de contenido y exporta el PDF. Revisado página por página.
+- Ampliación del informe (2026-10-09, preguntas del usuario): «una sola lista de
+  procesos» como primer punto, tablas de comparación listado frente a OneDrive
+  calculadas por `auditoria/metricas.py`, cuatro hallazgos nuevos, clasificación
+  y retención documental, y un anexo de estructura de carpetas para validar.
 
 Criterio de validación:
 - [x] Catálogo con todos los procesos del PPT y del listado, y los que solo
