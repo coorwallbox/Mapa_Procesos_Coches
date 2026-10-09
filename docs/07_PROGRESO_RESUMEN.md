@@ -1,6 +1,6 @@
 ---
-fase_actual: 2
-estado_resumen: "Fase 2 completa — siguiente fase por confirmar"
+fase_actual: 3
+estado_resumen: "Fase 3 construida (auditoría de concordancia) — validación pendiente: revisión del usuario"
 tolerancias_excedidas: 0
 fases_reabiertas: 0
 ---
@@ -94,6 +94,42 @@ Decisiones tomadas durante la fase:
 - Origen del dato: sigue embebido en `PROCESS_MAP` (script.js), mismo patrón
   que Fase 1; no se separó a una fuente externa.
 
+### Fase 3 — Auditoría de concordancia (carpetas vs. listado maestro)
+**Estado:** Construida — validación pendiente (revisión del usuario)
+Contexto: el mapa se integrará con `Consulta_Documental` (Entregables/Web), que
+reemplaza la búsqueda manual en OneDrive. Fuentes: el mapa de procesos anterior
+en PowerPoint (links por proceso a las carpetas de gestión documental) y el
+listado maestro de documentos en Excel.
+
+Decisiones del usuario (2026-10-08):
+- Acceso a las carpetas desde la web, partiendo del link de cada proceso (no
+  desde la carpeta raíz), y **solo nombres de archivo**: no se abre ni se
+  descarga ningún documento.
+- El mapa mantiene las 4 bandas ISO (la asignación de procesos reales a bandas
+  va en la Fase 4).
+- Los repos son públicos: los resultados (datos internos) viven en `auditoria/`,
+  fuera de Git por el `.gitignore` del proyecto; nada de esto se publica.
+
+Entregables (en `auditoria/`, no versionados):
+- Inventario de carpetas (solo nombres), cruce por código `PROCESO-TIPO-Nº`,
+  catálogo de procesos (código, nombre, macroproceso, carpeta) y reporte de
+  concordancia por categoría, con los scripts que los generan.
+
+Criterio de validación:
+- [x] Catálogo con todos los procesos del PPT y del listado, y los que solo
+      están en una de las dos fuentes.
+- [x] Reporte con las discrepancias por categoría (registro sin archivo,
+      archivo sin registro, mismo código con otro nombre, versión distinta,
+      archivo en carpeta de otro proceso, códigos repetidos o mal escritos).
+- [x] Solo nombres de archivo; ningún documento abierto.
+- [x] Resultados fuera de Git (`git status --ignored` muestra `auditoria/`).
+- [ ] Revisión del reporte por el usuario.
+
+Limitaciones: dos links del PPT rechazan el acceso de invitado (una carpeta se
+cubrió desde su macroproceso; la otra queda sin listar). La categoría "mismo
+código, nombre no coincide" se decide a mano: la similitud de nombres no separa
+abreviaturas de documentos distintos.
+
 ## Bitácora
 
 - Fase 1: layout de tarjetas ajustado en dos iteraciones — de centrado
@@ -136,3 +172,8 @@ Decisiones tomadas durante la fase:
   flex normal (título a la izquierda) solo en la media query de ≤640px;
   el centrado real de escritorio no cambió. Verificado sin solape en las
   4 bandas (`getBoundingClientRect`, viewport 390px) y captura de pantalla.
+- Ajuste posterior al cierre de Fase 2 (2026-09-27, registrado el 2026-10-08):
+  la banda "Procesos de apoyo" pasa arriba de "Procesos misionales" (la costura
+  de las tarjetas laterales se recalcula con el nuevo orden); las tarjetas
+  "Partes interesadas" se despliegan/colapsan con un botón (cerradas por
+  defecto, independientes); líneas punteadas animadas en el mapa.

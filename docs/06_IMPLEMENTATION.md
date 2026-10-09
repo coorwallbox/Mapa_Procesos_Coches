@@ -86,7 +86,6 @@ del tenant permita `github.io` como dominio incrustable si aplica.
 
 ## Pendientes / decisiones abiertas
 
-- Confirmar extensión real de los iconos (`.svg` vs `.png`).
 - Definir si habrá subtítulos por proceso y su origen.
 - Ficha de detalle por proceso (entradas/salidas, responsable, indicadores):
   fase futura.
