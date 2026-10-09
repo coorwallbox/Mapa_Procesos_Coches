@@ -11,7 +11,7 @@ Documentación del proyecto **Mapa de procesos (ISO 9001)**.
 
 ## Reglas de carga
 
-- **Siempre:** `01_INDEX` + `07_PROGRESO_RESUMEN`.
+- **Siempre:** `01_INDEX` + [[Entregables/Web/Mapa_de_procesos/docs/07_PROGRESO_RESUMEN|07_PROGRESO_RESUMEN]].
 - **A demanda:** el resto según la tarea.
 
 ## Docs previstos (aún no creados)

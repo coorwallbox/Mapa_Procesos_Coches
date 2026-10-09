@@ -1,5 +1,6 @@
 ---
-tema: Formularios
+tecnologia: Web
+tipo: entregable
 proyecto: Mapa_de_procesos
 estado: pendiente
 estado_resumen: "Fase 2 completa — siguiente fase por confirmar"
@@ -50,7 +51,7 @@ No requiere servidor ni build.
 
 - Identificadores en inglés, comentarios en español.
 - Arquitectura modular: datos, estructura y estilos separados.
-- Fases numeradas y validadas (ver [[Proyectos/Formularios/Mapa_de_procesos/docs/07_PROGRESO_RESUMEN|07_PROGRESO_RESUMEN]]).
+- Fases numeradas y validadas (ver [[Entregables/Web/Mapa_de_procesos/docs/07_PROGRESO_RESUMEN|07_PROGRESO_RESUMEN]]).
 
 ## Git
 
