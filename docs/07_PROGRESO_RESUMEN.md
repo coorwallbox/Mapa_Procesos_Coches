@@ -123,6 +123,17 @@ Entregables (en `auditoria/`, no versionados):
   procesos» como primer punto, tablas de comparación listado frente a OneDrive
   calculadas por `auditoria/metricas.py`, cuatro hallazgos nuevos, clasificación
   y retención documental, y un anexo de estructura de carpetas para validar.
+- Ampliación (2026-10-12/13, pedidos del usuario; todo en `auditoria/`, fuera de Git):
+  - **Copia limpia del listado** (`limpiar_listado.py`) como fuente del cruce, con la columna de ubicación en OneDrive
+    (`ubicar_onedrive.py`) y un **cuadro de control** en Excel con tablas dinámicas (`cuadro_control.py`).
+  - **Análisis de SG-PR-001** «Control de documentos y registros» (leído a pedido del usuario) y correcciones al
+    informe que el usuario autorizó: la regla de codificación existe pero está desactualizada (H2); SG-PR-001 es una
+    cuarta lista de procesos (H1); GH-RG-006A2 pasa a variante AUTOS de GH-RG-006 (numeral 5.12). Se verificó que el
+    prefijo «A-» no es variante: 7 de 8 archivos son documentos distintos de Los Autos con numeración propia.
+  - **Dos propuestas en Word/PDF:** control documental (SG-PR-001 v9) y mapa de procesos (bandas, ubicaciones en
+    discusión, soporte normativo, estructura de carpetas); plantilla en blanco del listado nuevo (20 columnas).
+  - **Prototipo del mapa propuesto** (`auditoria/propuesta_mapa/`) con íconos de la marca (Lucide, trazo 2 px; dos
+    propios dibujados en Illustrator), logo y favicon. No publicado: depende de la Fase 4.
 
 Criterio de validación:
 - [x] Catálogo con todos los procesos del PPT y del listado, y los que solo
