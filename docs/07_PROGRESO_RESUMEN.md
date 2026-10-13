@@ -1,6 +1,6 @@
 ---
-fase_actual: 3
-estado_resumen: "Fase 3 construida (auditoría de concordancia) — validación pendiente: revisión del usuario"
+fase_actual: 4
+estado_resumen: "Fase 3 cerrada — Fase 4 en curso (mejoras de cumplimiento del mapa)"
 tolerancias_excedidas: 0
 fases_reabiertas: 0
 ---
@@ -11,8 +11,9 @@ Estado por fases del proyecto **Mapa de procesos (ISO 9001)**.
 
 ## Estado general
 
-Fase 1 y Fase 2 completadas. Estructura del mapa, tarjetas de partes
-interesadas, alineación y ficha de detalle por proceso validadas.
+Fases 1, 2 y 3 completadas. Estructura del mapa, tarjetas de partes
+interesadas, ficha de detalle y auditoría de concordancia validadas.
+Fase 4 (mejoras de cumplimiento del mapa) en curso.
 
 ## Fases
 
@@ -95,7 +96,7 @@ Decisiones tomadas durante la fase:
   que Fase 1; no se separó a una fuente externa.
 
 ### Fase 3 — Auditoría de concordancia (carpetas vs. listado maestro)
-**Estado:** Construida — validación pendiente (revisión del usuario)
+**Estado:** Completada (2026-10-13)
 Contexto: el mapa se integrará con `Consulta_Documental` (Entregables/Web), que
 reemplaza la búsqueda manual en OneDrive. Fuentes: el mapa de procesos anterior
 en PowerPoint (links por proceso a las carpetas de gestión documental) y el
@@ -153,12 +154,53 @@ Criterio de validación:
       archivo en carpeta de otro proceso, códigos repetidos o mal escritos).
 - [x] Solo nombres de archivo; ningún documento abierto.
 - [x] Resultados fuera de Git (`git status --ignored` muestra `auditoria/`).
-- [ ] Revisión del reporte por el usuario.
+- [x] Revisión del reporte por el usuario (2026-10-13: lo dio por revisado al aprobar la Fase 4).
+
+Ajuste posterior (2026-10-13, desde la Fase 12 de Consulta_Documental): las plantillas del listado
+(`plantilla_listado.py`, `migrar_listado.py`) pasan a 22 columnas (CLASIFICACIÓN y EMISOR) y suman el tipo `DE`
+(documento externo); la migración sigue con 1049 filas.
 
 Limitaciones: dos links del PPT rechazan el acceso de invitado (una carpeta se
 cubrió desde su macroproceso; la otra queda sin listar). La categoría "mismo
 código, nombre no coincide" se decide a mano: la similitud de nombres no separa
 abreviaturas de documentos distintos.
+
+### Fase 4 — Mejoras de cumplimiento del mapa
+**Estado:** En curso (aprobada 2026-10-13)
+Origen: evaluación crítica del mapa frente a ISO 9001 y normas colombianas (12 vacíos, con fuentes). Se trabaja
+sobre el prototipo `auditoria/propuesta_mapa/`, la propuesta `Propuesta_Mapa_de_Procesos` y scripts en `auditoria/`
+(fuera de Git). Decisiones del usuario (2026-10-13): interacciones como **borrador para validar** (sin abrir
+documentos); el ícono que replica el logo de Wallbox **se mantiene** (advertencia registrada: Decisión 486 de la CAN,
+art. 155, y manual de marca p. 26); el mapa publicado en GitHub Pages **se deja** hasta tener el destino interno.
+
+Alcance:
+1. Cadena de valor sobre Misionales (requisitos del cliente → Comercial → Alistamiento → Posventa → satisfacción).
+2. Ficha de caracterización para los 26 procesos: objetivo, responsable, «Recibe de» / «Entrega a» (borrador por
+   validar, con enlaces entre fichas), riesgos e indicadores («Por completar» sin caracterización), normas que le
+   aplican, requisitos ISO a su cargo y enlace a sus documentos en Consulta_Documental (`?proceso=SIGLA`).
+3. Alcance del sistema: encabezado en el mapa y sección en la propuesta (texto modelo y exclusiones por confirmar).
+4. Dueño de los requisitos ISO sin proceso (§8.5.3, §8.7, §9.3, §7.1.6, §9.1.2), en fichas y propuesta.
+5. Regla de independencia de la auditoría interna a SG (§9.2.2 c).
+6. Plantilla de normograma (Excel) prellenada, con estado de verificación de cada norma.
+7. Hito SAGRILAFT: ajuste al capítulo IX antes del 31 de mayo de 2027 (CE 100-000020 de 2026).
+8. PESV con la cita completa (Resolución 20223040040595 de 2022 y Resolución 5178 de 2023) y paso para unificar las
+   dos políticas de seguridad vial.
+9. Transición a ISO 9001:2026 (fechas y paso de revisión del mapa).
+10. Script de control que compara las listas de procesos del mapa, de Consulta_Documental y de la plantilla del listado.
+
+Criterio de validación:
+- [ ] Las 26 tarjetas abren su ficha con todas las secciones; los enlaces «Recibe de» / «Entrega a» abren la ficha
+      del otro proceso; el borrador se distingue como «por validar»; el enlace a la consulta lleva `?proceso=SIGLA`.
+- [ ] Cadena de valor y alcance visibles; 375/768/1280 px sin desbordamiento; contraste AA; teclado y foco; 0 errores.
+- [ ] Propuesta regenerada con las secciones nuevas (diff de texto revisado, páginas registradas).
+- [ ] Normograma abre en Excel sin reparación, con todas las normas citadas y su estado de verificación.
+- [ ] El script de control corre y reporta las diferencias entre las listas.
+
+### Fase 5 — Bandas aprobadas y publicación interna
+**Estado:** No iniciada
+Aplicar las ubicaciones aprobadas al mapa, reemplazar los íconos del mapa publicado por los de la marca y publicarlo
+en el destino interno (el de Consulta_Documental, Fase 14 de ese proyecto); retirar entonces la versión de GitHub
+Pages. Depende de la decisión de la dirección sobre la propuesta y del destino interno.
 
 ## Bitácora
 
