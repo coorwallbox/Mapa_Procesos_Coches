@@ -1,6 +1,6 @@
 ---
 fase_actual: 4
-estado_resumen: "Fase 3 cerrada — Fase 4 en curso (mejoras de cumplimiento del mapa)"
+estado_resumen: "Fase 4 cerrada (mejoras de cumplimiento del mapa) — Fase 5 depende de la decisión de la dirección y del destino interno"
 tolerancias_excedidas: 0
 fases_reabiertas: 0
 ---
@@ -13,7 +13,7 @@ Estado por fases del proyecto **Mapa de procesos (ISO 9001)**.
 
 Fases 1, 2 y 3 completadas. Estructura del mapa, tarjetas de partes
 interesadas, ficha de detalle y auditoría de concordancia validadas.
-Fase 4 (mejoras de cumplimiento del mapa) en curso.
+Fase 4 (mejoras de cumplimiento del mapa) completada; la Fase 5 depende de algo externo.
 
 ## Fases
 
@@ -166,7 +166,7 @@ código, nombre no coincide" se decide a mano: la similitud de nombres no separa
 abreviaturas de documentos distintos.
 
 ### Fase 4 — Mejoras de cumplimiento del mapa
-**Estado:** En curso (aprobada 2026-10-13)
+**Estado:** Completada (2026-10-13)
 Origen: evaluación crítica del mapa frente a ISO 9001 y normas colombianas (12 vacíos, con fuentes). Se trabaja
 sobre el prototipo `auditoria/propuesta_mapa/`, la propuesta `Propuesta_Mapa_de_Procesos` y scripts en `auditoria/`
 (fuera de Git). Decisiones del usuario (2026-10-13): interacciones como **borrador para validar** (sin abrir
@@ -189,12 +189,49 @@ Alcance:
 10. Script de control que compara las listas de procesos del mapa, de Consulta_Documental y de la plantilla del listado.
 
 Criterio de validación:
-- [ ] Las 26 tarjetas abren su ficha con todas las secciones; los enlaces «Recibe de» / «Entrega a» abren la ficha
+- [x] Las 26 tarjetas abren su ficha con todas las secciones; los enlaces «Recibe de» / «Entrega a» abren la ficha
       del otro proceso; el borrador se distingue como «por validar»; el enlace a la consulta lleva `?proceso=SIGLA`.
-- [ ] Cadena de valor y alcance visibles; 375/768/1280 px sin desbordamiento; contraste AA; teclado y foco; 0 errores.
-- [ ] Propuesta regenerada con las secciones nuevas (diff de texto revisado, páginas registradas).
-- [ ] Normograma abre en Excel sin reparación, con todas las normas citadas y su estado de verificación.
-- [ ] El script de control corre y reporta las diferencias entre las listas.
+- [x] Cadena de valor y alcance visibles; 375/768/1280 px sin desbordamiento; contraste AA; teclado y foco; 0 errores.
+- [x] Propuesta regenerada con las secciones nuevas (diff de texto revisado, páginas registradas).
+- [x] Normograma abre en Excel sin reparación, con todas las normas citadas y su estado de verificación.
+- [x] El script de control corre y reporta las diferencias entre las listas.
+
+Entregables (en `auditoria/`, fuera de Git):
+- `caracterizacion_mapa.py` (nuevo): fuente única de nombres, propósito, interacciones (borrador), requisitos ISO, normas
+  con su estado de verificación, alcance, cadena de valor, regla de independencia, hito SAGRILAFT y nota de Wallbox. La
+  usan `datos_mapa.py` (prototipo), `propuesta_mapa_doc.py` (Word) y `normograma.py`.
+- Prototipo `propuesta_mapa/`: alcance y cadena de valor bajo el título; ficha de caracterización en las 29 siglas
+  (propósito, caracterización CA del listado, responsable y riesgos «por confirmar», interacciones en borrador con
+  enlaces entre fichas, requisitos ISO, normas con estado y enlace a la fuente, documentos y enlace a la consulta
+  `?proceso=SIGLA`); panel de 420 px.
+- `normograma.py` (nuevo) → `informe/Normograma - propuesta.xlsx`: 49 filas norma × proceso, 18 normas (14 filas
+  verificadas, 8 de fuente secundaria, 27 por verificar), tabla `Normograma` con listas de verificación y cumplimiento.
+- `control_listas.py` (nuevo): compara mapa, catálogo de Consulta_Documental y listado; sale con código 1 si difieren.
+- `Propuesta_Mapa_de_Procesos` (23 págs., antes 19): sección nueva 8 «Caracterización e interacción» (8.1 alcance,
+  8.2 cadena de valor e interacciones de los misionales, 8.3 caracterizaciones, 8.4 dueños de requisitos ISO,
+  8.5 independencia de SG, 8.6 normograma); carpetas pasa a 9 y próximos pasos a 10 (pasos 7–12 nuevos); dos decisiones
+  nuevas en el resumen; hito SAGRILAFT en 4.1; condición de independencia en 5.1; ISO 9001:2026 con fechas, CE
+  100-000020 con su plazo y PESV con la cita completa en la sección 7; hallazgo del ícono de Wallbox; Anexo B con las
+  fuentes verificadas en octubre de 2026.
+
+Resultado de la validación (2026-10-13):
+- QA headless del prototipo (Chrome del sistema, servido por HTTP): 32/32 — alcance y cadena de valor (5 pasos, lista
+  ordenada con nombre accesible, cada paso en una línea a 1280 px); las 29 fichas con sus 4 secciones, interacciones
+  (salvo INN, MOV y SEG, propuestos para baja) y enlace `?proceso=SIGLA`; Enter abre la ficha, el enlace «Recibe de»
+  abre la del otro proceso con el foco en su título y Esc devuelve el foco a la tarjeta original; SG con la regla de
+  independencia y su caracterización vigente; SGRF con el hito y la circular verificada (enlace en pestaña nueva); CAR
+  sin caracterización; WAL con la advertencia de marca; TAL dueño de §8.5.3 y §8.7; contraste AA de cadena, alcance,
+  notas, enlaces y los 3 estados de las normas; prefijo «Borrador» en color de aviso; Tab recorre los enlaces; el
+  enlace abre la consulta documental filtrada por TAL; 375/768/1280 px sin desbordamiento; 0 errores de consola.
+- Normograma: Excel lo abre (COM) con sus 3 hojas, la tabla de 49 filas y las listas desplegables.
+- Propuesta: regenerada con Word (23 págs.); diff de texto contra la versión anterior revisado y páginas 15–17 y 21–23
+  revisadas como imagen.
+- `control_listas.py`: corre y reporta 4 diferencias reales, que dependen de decisiones pendientes: INN, MOV y SEG no
+  están en el catálogo de la consulta (propuestos para baja) y SG está en Estratégicos en el mapa y en Evaluación y
+  mejora en la consulta (banda aún no aprobada). Se resuelven al aplicar las decisiones (Fase 5).
+
+Hallazgo de la fase: solo 7 de las 29 siglas tienen caracterización (CA) en el listado y solo SG-CA-001 está vigente;
+queda en la propuesta (8.3) y en el paso 7 del plan.
 
 ### Fase 5 — Bandas aprobadas y publicación interna
 **Estado:** No iniciada
