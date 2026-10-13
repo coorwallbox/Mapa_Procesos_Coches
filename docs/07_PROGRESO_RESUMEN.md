@@ -179,6 +179,8 @@ Alcance:
    validar, con enlaces entre fichas), riesgos e indicadores («Por completar» sin caracterización), normas que le
    aplican, requisitos ISO a su cargo y enlace a sus documentos en Consulta_Documental (`?proceso=SIGLA`).
 3. Alcance del sistema: encabezado en el mapa y sección en la propuesta (texto modelo y exclusiones por confirmar).
+   Ajuste posterior al cierre (2026-10-13, pedido del usuario): el alcance pasa al pie del mapa, debajo de «Procesos
+   por ubicar»; la cadena de valor sigue bajo el título. QA del mapa 34/34; consulta 52/52 y cargue 54/54 sin cambios.
 4. Dueño de los requisitos ISO sin proceso (§8.5.3, §8.7, §9.3, §7.1.6, §9.1.2), en fichas y propuesta.
 5. Regla de independencia de la auditoría interna a SG (§9.2.2 c).
 6. Plantilla de normograma (Excel) prellenada, con estado de verificación de cada norma.
