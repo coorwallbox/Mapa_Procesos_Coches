@@ -181,6 +181,9 @@ Alcance:
 3. Alcance del sistema: encabezado en el mapa y sección en la propuesta (texto modelo y exclusiones por confirmar).
    Ajuste posterior al cierre (2026-10-13, pedido del usuario): el alcance pasa al pie del mapa, debajo de «Procesos
    por ubicar»; la cadena de valor sigue bajo el título. QA del mapa 34/34; consulta 52/52 y cargue 54/54 sin cambios.
+   Ajuste (2026-10-13): el texto ya no da por hecho un certificado ISO 9001 (no aparece en los archivos revisados);
+   el alcance lo confirma Sistemas de Gestión con el certificado vigente o el documento de alcance del sistema
+   (aprueba la gerencia). Mapa, propuesta §8.1 y paso 8 regenerados; QA 34/34.
 4. Dueño de los requisitos ISO sin proceso (§8.5.3, §8.7, §9.3, §7.1.6, §9.1.2), en fichas y propuesta.
 5. Regla de independencia de la auditoría interna a SG (§9.2.2 c).
 6. Plantilla de normograma (Excel) prellenada, con estado de verificación de cada norma.
