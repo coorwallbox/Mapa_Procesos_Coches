@@ -140,6 +140,10 @@ Entregables (en `auditoria/`, no versionados):
     aprobación en línea (5 casos), con renumeración de 3.8–3.10; licencia Premium de Power Automate como decisión
     solicitada; carpeta `_Solicitudes` en el Anexo B (compartido con la propuesta del mapa); plantilla del listado con
     las reglas de fecha de vigencia, control de cambios y observaciones.
+  - **Listado migrado** (`migrar_listado.py`, 2026-10-13): el listado actual pasado a las 20 columnas como tabla de
+    Excel `ListadoMaestro` (la que lee el flujo F1 de Consulta_Documental), con hojas Resumen, Revisar y Trazabilidad;
+    `plantilla_listado.py` ahora también genera la plantilla en blanco como tabla. Probado: Excel la abre sin
+    reparación y la consulta la lee completa con la respuesta de F1 simulada.
 
 Criterio de validación:
 - [x] Catálogo con todos los procesos del PPT y del listado, y los que solo
