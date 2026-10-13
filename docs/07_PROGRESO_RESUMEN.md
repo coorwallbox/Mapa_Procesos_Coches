@@ -134,6 +134,12 @@ Entregables (en `auditoria/`, no versionados):
     discusión, soporte normativo, estructura de carpetas); plantilla en blanco del listado nuevo (20 columnas).
   - **Prototipo del mapa propuesto** (`auditoria/propuesta_mapa/`) con íconos de la marca (Lucide, trazo 2 px; dos
     propios dibujados en Illustrator), logo y favicon. No publicado: depende de la Fase 4.
+  - **Propuestas alineadas con Consulta_Documental** (2026-10-13, aprobado por el usuario): niveles documentales
+    con los nombres de la consulta (Estratégico, Táctico, Operativo, Evidencia); En revisión sin apertura ni descarga
+    (15 días); una fila por empresa en las variantes; anexos con versión propia; nuevo numeral 3.7 de solicitud y
+    aprobación en línea (5 casos), con renumeración de 3.8–3.10; licencia Premium de Power Automate como decisión
+    solicitada; carpeta `_Solicitudes` en el Anexo B (compartido con la propuesta del mapa); plantilla del listado con
+    las reglas de fecha de vigencia, control de cambios y observaciones.
 
 Criterio de validación:
 - [x] Catálogo con todos los procesos del PPT y del listado, y los que solo
