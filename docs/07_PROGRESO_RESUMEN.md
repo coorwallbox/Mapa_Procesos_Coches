@@ -191,6 +191,8 @@ Alcance:
    Ajuste (2026-10-13, pedido del usuario): la cadena de valor pasa al pie, debajo del alcance, con una descripción
    que cita ISO 9001:2015 §4.4.1 (secuencia e interacción de los procesos); propuesta §8.2 actualizada. Portada de
    los tres informes sin el cargo del autor. QA del mapa 36/36.
+   Ajuste (2026-10-13, pedido del usuario): al pie va primero la cadena de valor y después el alcance, alineados
+   a la izquierda con el título (a todo el ancho; la cadena cabe en una línea a 1280 px). QA del mapa 37/37.
 4. Dueño de los requisitos ISO sin proceso (§8.5.3, §8.7, §9.3, §7.1.6, §9.1.2), en fichas y propuesta.
 5. Regla de independencia de la auditoría interna a SG (§9.2.2 c).
 6. Plantilla de normograma (Excel) prellenada, con estado de verificación de cada norma.
