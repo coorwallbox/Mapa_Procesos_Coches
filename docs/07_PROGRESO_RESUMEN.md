@@ -184,6 +184,10 @@ Alcance:
    Ajuste (2026-10-13): el texto ya no da por hecho un certificado ISO 9001 (no aparece en los archivos revisados);
    el alcance lo confirma Sistemas de Gestión con el certificado vigente o el documento de alcance del sistema
    (aprueba la gerencia). Mapa, propuesta §8.1 y paso 8 regenerados; QA 34/34.
+   Ajuste (2026-10-13, pedido del usuario): la propuesta compara también con el mapa en PowerPoint (columna nueva
+   en la sección 3: 3 bandas, Mercadeo repetido, tres tarjetas de mantenimiento, carpetas compartidas, 2 enlaces
+   rotos) y suma la discusión 5.5 de Accesorios (VACC: Posventa en el PPT, Comercial en la propuesta), marcada
+   «En discusión» en el mapa. Quedan cinco ubicaciones en discusión; propuesta de 24 páginas; QA 34/34.
 4. Dueño de los requisitos ISO sin proceso (§8.5.3, §8.7, §9.3, §7.1.6, §9.1.2), en fichas y propuesta.
 5. Regla de independencia de la auditoría interna a SG (§9.2.2 c).
 6. Plantilla de normograma (Excel) prellenada, con estado de verificación de cada norma.
