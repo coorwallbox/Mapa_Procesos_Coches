@@ -300,3 +300,13 @@ Pages. Depende de la decisión de la dirección sobre la propuesta y del destino
   de las tarjetas laterales se recalcula con el nuevo orden); las tarjetas
   "Partes interesadas" se despliegan/colapsan con un botón (cerradas por
   defecto, independientes); líneas punteadas animadas en el mapa.
+- Ajuste (2026-10-15, pedido del usuario, adelanta parte de la Fase 5): el mapa raíz pasa a los íconos de la marca
+  (Lucide 1.53.0, trazo 2 px, azul `#00519A`, generados con `brand_svg` de `auditoria/iconos_mapa.py`): 15 SVG en
+  `img/iconos/` con su `LICENSE` (14 procesos + Partes interesadas) y `script.js` apunta a `.svg`. Nuevos en
+  `auditoria/fuentes_lucide/`: briefcase, chart-line, clipboard-check, circle-alert, list-checks, refresh-cw. Los 5 PNG
+  anteriores quedan en la carpeta sin uso. Verificado headless a 1280 px: 16/16 imágenes cargadas, 0 placeholders.
+  No publicado.
+- Ajuste (2026-10-15, pedido del usuario): la cabecera dice «Sistema de gestión» (antes «Sistema de Gestión de
+  Calidad») y lleva el logo horizontal azul de Los Coches sobre el título, más el favicon de la marca (mismos archivos
+  y estilo `.map-logo` del prototipo `propuesta_mapa/`). Verificado headless a 1280 y 375 px: logo y favicon cargan,
+  sin desbordamiento, 0 errores de consola. No publicado.

@@ -16,11 +16,11 @@ const PROCESS_MAP = [
     name: "Procesos estratégicos",
     colorVar: "--strategic",
     processes: [
-      { name: "Gerencia", icon: "gerencia.png" },
-      { name: "Sistema Integrado de Gestión", icon: "sistema-integrado-gestion.png" },
-      { name: "Auditoría", icon: "auditoria.png" },
-      { name: "Sagrilaf", icon: "sagrilaf.png" },
-      { name: "Gestión Jurídica", icon: "gestion-juridica.png" }
+      { name: "Gerencia", icon: "gerencia.svg" },
+      { name: "Sistema Integrado de Gestión", icon: "sistema-integrado-gestion.svg" },
+      { name: "Auditoría", icon: "auditoria.svg" },
+      { name: "Sagrilaf", icon: "sagrilaf.svg" },
+      { name: "Gestión Jurídica", icon: "gestion-juridica.svg" }
     ]
   },
   {
@@ -30,14 +30,14 @@ const PROCESS_MAP = [
     processes: [
       {
         name: "Administrativos",
-        icon: "administrativos.png",
+        icon: "administrativos.svg",
         // Campos de ejemplo (Fase 2): solo Misionales/Apoyo tienen ficha de detalle.
         description: "Provee los recursos, infraestructura y servicios administrativos que soportan la operación de los demás procesos.",
         responsible: "Jefe Administrativo"
       },
       {
         name: "Financieros",
-        icon: "financieros.png",
+        icon: "financieros.svg",
         description: "Planifica y controla los recursos financieros de la organización, incluyendo presupuesto, tesorería y cartera.",
         responsible: "Jefe Financiero"
       }
@@ -50,13 +50,13 @@ const PROCESS_MAP = [
     processes: [
       {
         name: "Comercial",
-        icon: "comercial.png",
+        icon: "comercial.svg",
         description: "Gestiona la relación con el cliente desde la oferta hasta el cierre de la venta, asegurando el cumplimiento de los requisitos comerciales.",
         responsible: "Jefe Comercial"
       },
       {
         name: "Posventa",
-        icon: "posventa.png",
+        icon: "posventa.svg",
         description: "Atiende garantías, reclamos y soporte posteriores a la venta, asegurando la satisfacción continua del cliente.",
         responsible: "Coordinador de Posventa"
       }
@@ -67,11 +67,11 @@ const PROCESS_MAP = [
     name: "Procesos de evaluación y mejora",
     colorVar: "--improvement",
     processes: [
-      { name: "Seguimiento y medición", icon: "seguimiento-medicion.png" },
-      { name: "Auditoría interna", icon: "auditoria-interna.png" },
-      { name: "Gestión de no conformidades", icon: "no-conformidades.png" },
-      { name: "Acciones correctivas y preventivas", icon: "acciones-correctivas-preventivas.png" },
-      { name: "Mejora continua", icon: "mejora-continua.png" }
+      { name: "Seguimiento y medición", icon: "seguimiento-medicion.svg" },
+      { name: "Auditoría interna", icon: "auditoria-interna.svg" },
+      { name: "Gestión de no conformidades", icon: "no-conformidades.svg" },
+      { name: "Acciones correctivas y preventivas", icon: "acciones-correctivas-preventivas.svg" },
+      { name: "Mejora continua", icon: "mejora-continua.svg" }
     ]
   }
 ];
@@ -83,7 +83,7 @@ const STAKEHOLDERS = {
   // sigan siempre el mismo patrón: palabra corta arriba, "partes interesadas" abajo.
   titleLeft: "Solicitudes<br>partes interesadas",
   titleRight: "Satisfacción<br>partes interesadas",
-  icon: "partes-interesadas.png", // aún no existe -> cae al placeholder, igual que el resto
+  icon: "partes-interesadas.svg", // íconos de marca (Lucide, trazo 2 px, azul Los Coches)
   items: ["Cliente", "Empleados", "Proveedores", "Accionistas", "Entidades de control", "Comunidad"]
 };
 

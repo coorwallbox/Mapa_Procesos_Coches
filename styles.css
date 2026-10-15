@@ -53,6 +53,14 @@ body {
   margin-bottom: 28px;
 }
 
+/* Logo de la marca (versión horizontal azul del manual; el SVG ya trae su área de protección) */
+.map-logo {
+  display: block;
+  width: 240px;          /* el logo visible queda por encima del mínimo del manual (180 px) */
+  height: auto;
+  margin: 0 0 8px -13px; /* el área de protección (13 px a este ancho) sale al margen: la tinta se alinea con el título */
+}
+
 .map-eyebrow {
   margin: 0 0 6px;
   font-size: 0.8rem;
