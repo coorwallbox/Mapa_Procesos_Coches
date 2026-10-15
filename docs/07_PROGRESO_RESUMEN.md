@@ -310,3 +310,33 @@ Pages. Depende de la decisión de la dirección sobre la propuesta y del destino
   Calidad») y lleva el logo horizontal azul de Los Coches sobre el título, más el favicon de la marca (mismos archivos
   y estilo `.map-logo` del prototipo `propuesta_mapa/`). Verificado headless a 1280 y 375 px: logo y favicon cargan,
   sin desbordamiento, 0 errores de consola. No publicado.
+- Publicación (2026-10-15, aprobada por el usuario): el commit del usuario subió `index.html`/`script.js`/`styles.css`
+  pero no las imágenes nuevas, porque el `.gitignore` (`*`) ignora todo archivo no versionado → 404 en GitHub Pages
+  (visto desde el celular). Se agregaron con `git add -f` (15 SVG, `LICENSE`, logo y favicon) y se subieron; GitHub
+  Pages responde 200 en logo, favicon e íconos. Lección: todo archivo nuevo de este repo se agrega con `git add -f`.
+- Ajuste (2026-10-15, pedido del usuario): la ficha de Administrativos suma la sección «Componentes» con 7 siglas
+  (GH, TEC, ARC, COM, TRA, MER, MTTO) desde el campo opcional `components` de `PROCESS_MAP`; la sección se oculta en
+  los procesos sin ese dato. Sigla en negrita con el color de la banda de apoyo (contraste AA sobre blanco).
+  Verificado headless a 1280 y 375 px: 7 viñetas en Administrativos, sección oculta en Financieros, sin desbordamiento,
+  0 errores. No publicado.
+  Luego Financieros suma sus 4 componentes (CAR, TES, CON, FAC); verificado igual a 1280 y 375 px, 0 errores.
+  Luego Comercial suma 8 (GVE, VUS, ALI, Retomas, Ventas digitales, CNTC, MER, FYO «Financieras y otros», nombre del
+  listado); Retomas y Ventas digitales van sin sigla porque el listado no les asigna una. Las siglas pasan a tomar el
+  color de la banda del proceso (`--band-color` de la tarjeta → `--detail-band-color` del panel). Verificado a 1280 y
+  375 px: teal en Comercial, ámbar en Apoyo, 0 errores.
+  Decisión del usuario: MER figura en Administrativos y en Comercial **solo en esta versión del mapa**; en la versión
+  de marca (Fase 5) su ubicación sigue la propuesta aprobada.
+  Luego Posventa suma 5, como en el mapa en PowerPoint (elección del usuario): TAL, ASE, REP, VACC y Colisión (sin
+  sigla). Verificado a 1280 y 375 px con las 4 fichas: colores por banda, sin desbordamiento, 0 errores. No publicado.
+- Ajuste (2026-10-15, pedido del usuario): se retira la banda «Procesos de evaluación y mejora» para quedar igual al
+  mapa en PowerPoint (3 bandas: estratégicos, apoyo, misionales). Sus 5 íconos quedan en `img/iconos/` sin uso. Los
+  conectores punteados ahora omiten el tramo cuya cabecera queda al lado de la tarjeta lateral (con 3 bandas, el
+  de Misionales la atravesaba). Verificado a 1280 y 375 px, plegado y expandido: 3 bandas, 4 trazos en escritorio,
+  sin desbordamiento, 0 errores. No publicado. (La propuesta de Fase 4 mantiene su banda de evaluación y mejora.)
+- Ajuste (2026-10-15, pedido del usuario, tomado del PowerPoint `mapa_procesos_los_coches 2026.pptx`): títulos de
+  banda «1. Proceso Gerencial», «2. Proceso de Soporte» y «3. Proceso Operacional»; lazo punteado inferior que va de
+  la tarjeta derecha por debajo de las bandas a la izquierda, con flechas «<» y la etiqueta «Mejora continua de los
+  sistemas de gestión» (elemento HTML; en móvil queda como texto bajo el mapa). La altura del lazo se calcula con la
+  posición final de las tarjetas, no la leída durante su transición. Verificado a 1280 px: línea y etiqueta
+  coinciden plegado, con Gerencial abierto y con las laterales abiertas; 375 px sin desbordamiento; 0 errores.
+  No publicado.

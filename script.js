@@ -13,7 +13,7 @@ const ICON_BASE = "img/iconos";
 const PROCESS_MAP = [
   {
     id: "strategic",
-    name: "Procesos estratégicos",
+    name: "1. Proceso Gerencial",
     colorVar: "--strategic",
     processes: [
       { name: "Gerencia", icon: "gerencia.svg" },
@@ -25,7 +25,7 @@ const PROCESS_MAP = [
   },
   {
     id: "support",
-    name: "Procesos de apoyo",
+    name: "2. Proceso de Soporte",
     colorVar: "--support",
     processes: [
       {
@@ -33,47 +33,71 @@ const PROCESS_MAP = [
         icon: "administrativos.svg",
         // Campos de ejemplo (Fase 2): solo Misionales/Apoyo tienen ficha de detalle.
         description: "Provee los recursos, infraestructura y servicios administrativos que soportan la operación de los demás procesos.",
-        responsible: "Jefe Administrativo"
+        responsible: "Jefe Administrativo",
+        // Subprocesos que agrupa (sigla + nombre); se listan en la ficha bajo «Componentes»
+        components: [
+          { code: "GH", name: "Gestión humana" },
+          { code: "TEC", name: "Tecnología" },
+          { code: "ARC", name: "Archivo" },
+          { code: "COM", name: "Compras" },
+          { code: "TRA", name: "Trámites" },
+          { code: "MER", name: "Mercadeo" },
+          { code: "MTTO", name: "Mantenimiento" }
+        ]
       },
       {
         name: "Financieros",
         icon: "financieros.svg",
         description: "Planifica y controla los recursos financieros de la organización, incluyendo presupuesto, tesorería y cartera.",
-        responsible: "Jefe Financiero"
+        responsible: "Jefe Financiero",
+        components: [
+          { code: "CAR", name: "Cartera" },
+          { code: "TES", name: "Tesorería" },
+          { code: "CON", name: "Contabilidad" },
+          { code: "FAC", name: "Facturación" }
+        ]
       }
     ]
   },
   {
     id: "core",
-    name: "Procesos misionales",
+    name: "3. Proceso Operacional",
     colorVar: "--core",
     processes: [
       {
         name: "Comercial",
         icon: "comercial.svg",
         description: "Gestiona la relación con el cliente desde la oferta hasta el cierre de la venta, asegurando el cumplimiento de los requisitos comerciales.",
-        responsible: "Jefe Comercial"
+        responsible: "Jefe Comercial",
+        // Retomas y Ventas digitales aún no tienen sigla en el listado maestro (code vacío, el nombre queda alineado)
+        components: [
+          { code: "GVE", name: "Vehículos nuevos" },
+          { code: "VUS", name: "Vehículos usados" },
+          { code: "ALI", name: "Alistamiento" },
+          { code: "", name: "Retomas" },
+          { code: "", name: "Ventas digitales" },
+          { code: "CNTC", name: "Contact center" },
+          { code: "MER", name: "Mercadeo" },
+          { code: "FYO", name: "Financieras y otros" }
+        ]
       },
       {
         name: "Posventa",
         icon: "posventa.svg",
         description: "Atiende garantías, reclamos y soporte posteriores a la venta, asegurando la satisfacción continua del cliente.",
-        responsible: "Coordinador de Posventa"
+        responsible: "Coordinador de Posventa",
+        // Como en el mapa en PowerPoint; Colisión no tiene sigla en el listado maestro
+        components: [
+          { code: "TAL", name: "Taller" },
+          { code: "ASE", name: "Aseguradoras" },
+          { code: "REP", name: "Repuestos" },
+          { code: "VACC", name: "Accesorios" },
+          { code: "", name: "Colisión" }
+        ]
       }
     ]
-  },
-  {
-    id: "improvement",
-    name: "Procesos de evaluación y mejora",
-    colorVar: "--improvement",
-    processes: [
-      { name: "Seguimiento y medición", icon: "seguimiento-medicion.svg" },
-      { name: "Auditoría interna", icon: "auditoria-interna.svg" },
-      { name: "Gestión de no conformidades", icon: "no-conformidades.svg" },
-      { name: "Acciones correctivas y preventivas", icon: "acciones-correctivas-preventivas.svg" },
-      { name: "Mejora continua", icon: "mejora-continua.svg" }
-    ]
   }
+  // Banda «Procesos de evaluación y mejora» retirada para quedar igual al mapa en PowerPoint (3 bandas)
 ];
 
 /* --- Partes interesadas: misma tarjeta (icono + lista) a cada lado del mapa,
@@ -158,11 +182,11 @@ function buildProcessCard(process) {
     card.tabIndex = 0;
     card.setAttribute("role", "button");
     card.setAttribute("aria-haspopup", "dialog");
-    card.addEventListener("click", () => openDetailPanel(process));
+    card.addEventListener("click", () => openDetailPanel(process, card));
     card.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        openDetailPanel(process);
+        openDetailPanel(process, card);
       }
     });
   }
@@ -295,12 +319,31 @@ function drawConnectors(left, right, cardTops, seamY) {
   const rightTop = cardTops[right.id];
   const rightBottom = rightTop + right.offsetHeight;
 
+  // Tramos de arriba: solo si la cabecera de la primera banda queda por encima de la tarjeta
   const dashed = [
-    `M${leftX},${leftTop} V${topY} H${bandsLeft - edgeGap}`,
-    `M${leftX},${leftBottom} V${bottomY} H${bandsLeft - edgeGap}`,
-    `M${bandsRight + edgeGap},${topY} H${rightX} V${rightTop}`,
-    `M${bandsRight + edgeGap},${bottomY} H${rightX} V${rightBottom}`
-  ];
+    topY < leftTop && `M${leftX},${leftTop} V${topY} H${bandsLeft - edgeGap}`,
+    topY < rightTop && `M${bandsRight + edgeGap},${topY} H${rightX} V${rightTop}`
+  ].filter(Boolean);
+
+  // Lazo de abajo, como en el mapa en PowerPoint: de la tarjeta derecha baja, pasa por debajo de
+  // las bandas hacia la izquierda (a la altura de la etiqueta «Mejora continua…») y sube a la izquierda
+  const loopLabel = document.getElementById("mapLoopLabel");
+  let loopArrows = "";
+  if (loopLabel) {
+    const labelRect = loopLabel.getBoundingClientRect();
+    // Altura FINAL de la etiqueta: debajo de lo más bajo de su fila (bandas o tarjetas en su posición final),
+    // no la leída del DOM, que durante la transición de margin-top de las tarjetas aún no es la definitiva
+    const rowBottom = Math.max(bandsRect.bottom - layoutRect.top, leftBottom, rightBottom);
+    const labelMargin = parseFloat(getComputedStyle(loopLabel).marginTop) || 0;
+    const loopY = rowBottom + labelMargin + labelRect.height / 2;
+    dashed.push(`M${rightX},${rightBottom} V${loopY} H${leftX} V${leftBottom}`);
+    // Flechas "<" a cada lado de la etiqueta: el ciclo vuelve de la satisfacción a las solicitudes
+    const leftArrow = (x) => `M${x + 3},${loopY - 6} L${x - 3},${loopY} L${x + 3},${loopY + 6}`;
+    const gap = 28;
+    loopArrows =
+      `<path class="connector-arrow" d="${leftArrow(labelRect.left - layoutRect.left - gap)}"/>` +
+      `<path class="connector-arrow connector-arrow--out" d="${leftArrow(labelRect.right - layoutRect.left + gap)}"/>`;
+  }
 
   // Flechas ">" centradas en el hueco entre tarjeta y bandas, a la altura de la costura
   const arrow = (x) => `M${x - 3},${seamY - 6} L${x + 3},${seamY} L${x - 3},${seamY + 6}`;
@@ -310,7 +353,8 @@ function drawConnectors(left, right, cardTops, seamY) {
   svg.innerHTML =
     dashed.map((d) => `<path class="connector-line" d="${d}"/>`).join("") +
     `<path class="connector-arrow" d="${arrow(leftArrowX)}"/>` +
-    `<path class="connector-arrow connector-arrow--out" d="${arrow(rightArrowX)}"/>`;
+    `<path class="connector-arrow connector-arrow--out" d="${arrow(rightArrowX)}"/>` +
+    loopArrows;
 }
 
 /* --- Ficha de detalle de proceso (Fase 2): panel lateral deslizante ---
@@ -319,7 +363,7 @@ function drawConnectors(left, right, cardTops, seamY) {
    devolverle el foco al cerrar (accesibilidad). */
 let detailTriggerEl = null;
 
-function openDetailPanel(process) {
+function openDetailPanel(process, card) {
   const overlay = document.getElementById("detailOverlay");
   const panel = document.getElementById("detailPanel");
   if (!overlay || !panel) return;
@@ -338,6 +382,23 @@ function openDetailPanel(process) {
   document.getElementById("detailTitle").textContent = process.name;
   document.getElementById("detailDescription").textContent = process.description || "—";
   document.getElementById("detailResponsible").textContent = process.responsible || "—";
+
+  // Componentes: la sección solo se muestra si el proceso los trae
+  const componentsField = document.getElementById("detailComponentsField");
+  const componentsList = document.getElementById("detailComponents");
+  componentsList.innerHTML = "";
+  (process.components || []).forEach(({ code, name }) => {
+    const item = document.createElement("li");
+    const sigla = document.createElement("span");
+    sigla.className = "detail-code";
+    sigla.textContent = code;
+    item.append(sigla, ` ${name}`);
+    componentsList.appendChild(item);
+  });
+  componentsField.hidden = !process.components?.length;
+  // Las siglas toman el color de la banda de la tarjeta que abrió la ficha (heredado como --band-color)
+  const bandColor = card ? getComputedStyle(card).getPropertyValue("--band-color").trim() : "";
+  panel.style.setProperty("--detail-band-color", bandColor || "var(--ink)");
 
   overlay.hidden = false;
   // requestAnimationFrame: aplica hidden=false antes de is-open para que la

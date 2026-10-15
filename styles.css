@@ -140,6 +140,20 @@ body {
   50%      { opacity: 0.25; }
 }
 
+/* Etiqueta del lazo inferior: ocupa toda la fila bajo las bandas y tapa la línea punteada que pasa por su centro */
+.map-loop-label {
+  grid-column: 1 / -1;
+  justify-self: center;
+  position: relative;
+  z-index: 1;
+  margin: 28px 0 0;
+  padding: 0 14px;
+  background: var(--surface); /* mismo fondo de la página */
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: center;
+}
+
 /* --- Contenedor de bandas --- */
 .map-bands {
   display: flex;
@@ -551,6 +565,21 @@ body {
   margin: 0;
   font-size: 0.9rem;
   line-height: 1.5;
+}
+
+/* Lista de componentes: viñeta + sigla en negrita y ancho fijo para que los nombres queden alineados */
+.detail-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.detail-code {
+  display: inline-block;
+  min-width: 3.4em;
+  font-weight: 700;
+  color: var(--detail-band-color, var(--ink)); /* color de la banda del proceso, lo fija openDetailPanel */
 }
 
 /* --- Responsivo --- */
